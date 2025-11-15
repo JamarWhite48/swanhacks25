@@ -7,7 +7,9 @@ function App() {
 
   return (
     <>
-      
+      <div className='w-[75vw] min-h-[90vh] bg-white'>
+        <h1>Emergency Dashboard</h1>
+      </div>
     </>
   )
 }
