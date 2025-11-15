@@ -4,11 +4,12 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      
+      <div className='w-[75vw] min-h-[90vh] bg-white'>
+        <h1>Emergency Dashboard</h1>
+      </div>
     </>
   )
 }
