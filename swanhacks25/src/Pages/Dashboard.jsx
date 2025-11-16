@@ -1,12 +1,59 @@
 import Message from '../Components/Message.jsx'
 import Navbar from '../Components/Navbar.jsx'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import "../index.css"
-import {database} from "../../firebase.json"
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+
+// Firebase Imports
+import { database } from '../firebaseConfig' 
+import { ref, onValue } from "firebase/database"
 
 const Dashboard = () => {
   
+    useEffect(() => {
+        // Reference to the 'alerts' node where your backend stores messages
+        const alertsRef = ref(database, 'alerts');
+        
+        // onValue sets up a real-time listener
+        const unsubscribe = onValue(alertsRef, (snapshot) => {
+            const data = snapshot.val();
+            const loadedMessages = [];
+
+            if (data) {
+                // Firebase Realtime DB returns an object of objects. Convert it to an array.
+                for (const key in data) {
+                    const alert = data[key];
+                    
+                    // The analysis from Gemini is a single string and needs parsing
+                    const parsedData = parseGeminiAnalysis(alert.analysis);
+
+                    loadedMessages.push({
+                        id: key, // Unique key for React list (critical!)
+                        sender: alert.from,
+                        time: new Date(alert.timestamp).toLocaleTimeString(),
+                        date: new Date(alert.timestamp).toLocaleDateString(),
+                        messageBody: alert.message,
+                        
+                        // Populate the list fields from the parsed AI analysis
+                        type: parsedData.type || 'Unknown Type',
+                        location: parsedData.location || 'Unknown Location',
+                        // You can adjust 'status' based on AI analysis if needed
+                        status: 'Pending', 
+                    });
+                }
+            }
+            
+            // Show the newest messages (highest timestamp) at the top of the list
+            setMessageList(loadedMessages.reverse());
+            setLoading(false);
+        }, (error) => {
+            console.error("Firebase read error:", error.message);
+            setLoading(false);
+        });
+
+        // Cleanup function: detaches the listener when the component unmounts
+        return () => unsubscribe();
+    }, []);
+
   const [messageList, setMessageList] = useState([{key: 0, type:'Need', time:'9/12/25', location:'123 Main St. Iowa City, IA', sender:'712-676-4201', status:'Pending'}])
 
   return (
