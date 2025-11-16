@@ -1,6 +1,6 @@
 # Inspiration
 
-During large-scale emergencies—such as hurricanes, wildfires, floods, and severe storms, 911 dispatch centers are often overwhelmed by massive spikes in calls. People facing life-threatening situations struggle to get through, and dispatchers lack the tools to quickly triage and categorize urgent requests. This bottleneck can cost lives. We wanted to build a system that lightens the load on dispatchers, improves response efficiency, and provides a clearer overview of active emergencies. Our goal: use AI and real-time communication tech to turn chaotic information streams into something structured, actionable, and life-saving.
+During large-scale emergencies such as hurricanes, wildfires, floods, and severe storms, 911 dispatch centers are often overwhelmed by massive spikes in calls. People facing life-threatening situations struggle to get through, and dispatchers lack the tools to quickly triage and categorize urgent requests. This bottleneck can cost lives. We wanted to build a system that lightens the load on dispatchers, improves response efficiency, and provides a clearer overview of active emergencies. Our goal: use AI and real-time communication tech to turn chaotic information streams into something structured, actionable, and life-saving.
 
 # What it does
 
