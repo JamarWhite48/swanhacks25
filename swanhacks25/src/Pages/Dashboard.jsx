@@ -13,13 +13,17 @@ function parseMessage(message) {
     let location = "Unknown";
 
     // Extract location if message contains "Location: ..."
-    const locMatch = message.match(/Location:\s*(.*)/i);
+    const locMatch = message.match(/Location\s*(.*)/i);
     if (locMatch && locMatch[1]) location = locMatch[1].trim();
 
     // Detect type from keywords
     if (/fire/i.test(message)) type = "Fire";
+    else if (/ems/i.test(message)) type = "EMS";
     else if (/police/i.test(message)) type = "Police";
-    else if (/medical|help/i.test(message)) type = "Need";
+    else if (/help/i.test(message)) type = "Need";
+    else if (/medical/i.test(message)) type = "Medical";
+    else if (/flood/i.test(message)) type = "Relief";
+
 
     return { type, location };
 }
