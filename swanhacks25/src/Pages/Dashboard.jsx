@@ -67,16 +67,6 @@ const Dashboard = () => {
           }
         }
 
-        // 👇 fallback to demo messages if Firebase is empty
-        if (loadedMessages.length === 0) {
-          setMessageList([
-            { id: 0, type: 'Need', time: '9/12/25', location: '123 Main St', sender: '712-676-4201', status: 'Pending' },
-            { id: 1, type: 'Fire', time: '9/16/27', location: '999 hello st', sender: '712-444-1234', status: 'Completed' },
-          ]);
-          setLoading(false);
-          return;
-        }
-
         setMessageList(loadedMessages.reverse());
         setLoading(false);
       });
@@ -112,7 +102,7 @@ const Dashboard = () => {
         </div>
         <hr/>
 
-        {sortedList.map((item, index) => {
+        {messageList.map((item, index) => {
             return(<Message 
                 key={item.key}
                 type={item.type}
