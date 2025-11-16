@@ -1,4 +1,5 @@
 import { useState } from "react";
+import check from '../assets/check.png'
 
 function Message(props) {
   
@@ -45,6 +46,10 @@ function Message(props) {
         : "text-gray-500"}`}>
         <p>{props.status}</p></div>
         <div className="w-[100%]"><p>{props.time}</p></div>
+
+        <div className='w-[100%] shrink-[1.2]'>
+          {props.status != "Completed" && <button className='w-[20px]' onClick={() => props.onComplete()}><img src={check}></img></button>}
+        </div>
 
         <div className="w-[100%] shrink-[1.1]">
           <button
