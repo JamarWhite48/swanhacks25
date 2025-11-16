@@ -42,52 +42,46 @@ const Dashboard = () => {
         );
     };
 
-      useEffect(() => {
+    useEffect(() => {
+      const alertsRef = ref(database, 'alerts');
 
-        // Reference to the 'alerts' node where your backend stores messages
-        const alertsRef = ref(database, 'alerts');
-        
-        // onValue sets up a real-time listener
-        const unsubscribe = onValue(alertsRef, (snapshot) => {
-            const data = snapshot.val();
-            const loadedMessages = [];
+      const unsubscribe = onValue(alertsRef, (snapshot) => {
+        const data = snapshot.val();
+        const loadedMessages = [];
 
-            if (data) {
-                // Firebase Realtime DB returns an object of objects. Convert it to an array.
-                for (const key in data) {
-                    const alert = data[key];
-                    
-                    // The analysis from Gemini is a single string and needs parsing
-                    const parsedData = parseGeminiAnalysis(alert.analysis);
+        if (data) {
+          for (const key in data) {
+            const alert = data[key];
+            const parsedData = parseGeminiAnalysis(alert.analysis);
 
-                    loadedMessages.push({
-                        id: key, // Unique key for React list (critical!)
-                        sender: alert.from,
-                        time: new Date(alert.timestamp).toLocaleTimeString(),
-                        date: new Date(alert.timestamp).toLocaleDateString(),
-                        messageBody: alert.message,
-                        
-                        // Populate the list fields from the parsed AI analysis
-                        type: parsedData.type || 'Unknown Type',
-                        location: parsedData.location || 'Unknown Location',
-                        // You can adjust 'status' based on AI analysis if needed
-                        status: 'Pending', 
-                    });
-                }
-            }
-            
-            // Show the newest messages (highest timestamp) at the top of the list
-            setMessageList(loadedMessages.reverse());
-            console.log("Loaded Messages: ", loadedMessages)
-            console.log("message list: ", messageList)
-            setLoading(false);
-        }, (error) => {
-            console.error("Firebase read error:", error.message);
-            setLoading(false);
-        });
+            loadedMessages.push({
+              id: key,
+              sender: alert.from,
+              time: new Date(alert.timestamp).toLocaleTimeString(),
+              date: new Date(alert.timestamp).toLocaleDateString(),
+              messageBody: alert.message,
+              type: parsedData.type || 'Unknown Type',
+              location: parsedData.location || 'Unknown Location',
+              status: 'Pending',
+            });
+          }
+        }
 
-        // Cleanup function: detaches the listener when the component unmounts
-        return () => unsubscribe();
+        // 👇 fallback to demo messages if Firebase is empty
+        if (loadedMessages.length === 0) {
+          setMessageList([
+            { id: 0, type: 'Need', time: '9/12/25', location: '123 Main St', sender: '712-676-4201', status: 'Pending' },
+            { id: 1, type: 'Fire', time: '9/16/27', location: '999 hello st', sender: '712-444-1234', status: 'Completed' },
+          ]);
+          setLoading(false);
+          return;
+        }
+
+        setMessageList(loadedMessages.reverse());
+        setLoading(false);
+      });
+
+      return () => unsubscribe();
     }, []);
 
   return (
