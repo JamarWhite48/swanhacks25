@@ -1,8 +1,7 @@
 import { useState } from "react";
-import check from '../assets/check.png'
+import check from '../assets/check.png';
 
-function Message(props) {
-  
+function Message({ type, location, sender, status, time, messageBody, onComplete, onReply }) {
   const [open, setOpen] = useState(false);
   const [replyText, setReplyText] = useState("");
 
@@ -19,7 +18,6 @@ function Message(props) {
       return;
     }
 
-    // Call parent reply handler (Dashboard)
     if (onReply) {
       onReply({
         phoneNumber: sender,
@@ -33,26 +31,32 @@ function Message(props) {
     setToastType("success");
     setToastMessage("Message sent successfully!");
     setShowToast(true);
-
     setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
-    <>
-      <div className="flex text-xs text-[#d3d2d6] font-thin mt-[30px] mb-[10px] justify-evenly items-center gap-[5px]">
-        <div className="w-[100%] shrink-[1.1]"><p>{props.type}</p></div>
-        <div className="w-[100%]"><p>{props.location}</p></div>
-        <div className="w-[100%]"><p>{props.sender}</p></div>
-        <div className={`w-[100%] 
-        ${props.status === "Pending" ? "text-yellow-500 font-bold" 
-        : props.status === "Completed" ? "text-green-500 font-bold" 
-        : "text-gray-500"}`}>
-        <p>{props.status}</p></div>
-        <div className="w-[100%]"><p>{props.time}</p></div>
+      <>
+        {/* Main Row */}
+        <div className="flex text-xs text-[#d3d2d6] font-thin mt-[30px] mb-[10px] justify-evenly items-center gap-[5px]">
+          <div className="w-[100%] shrink-[1.1]"><p>{type}</p></div>
+          <div className="w-[100%]"><p>{location}</p></div>
+          <div className="w-[100%]"><p>{sender}</p></div>
+          <div className={`w-[100%] 
+          ${status === "Pending" ? "text-yellow-500 font-bold"
+              : status === "Completed" ? "text-green-500 font-bold"
+                  : "text-gray-500"}`}>
+            <p>{status}</p>
+          </div>
+          <div className="w-[100%]"><p>{time}</p></div>
+          <div className="w-[100%] shrink-[1.2]"><p>{messageBody}</p></div>
 
-        <div className='w-[100%] shrink-[1.2]'>
-          {props.status != "Completed" && <button className='w-[20px]' onClick={() => props.onComplete()}><img src={check}></img></button>}
-        </div>
+          <div className='w-[100%] shrink-[1.2]'>
+            {status !== "Completed" &&
+                <button className='w-[20px]' onClick={onComplete}>
+                  <img src={check} alt="complete"/>
+                </button>
+            }
+          </div>
 
           <div className="w-[100%] shrink-[1.1]">
             <button
@@ -63,17 +67,13 @@ function Message(props) {
             </button>
           </div>
         </div>
-
         <hr />
 
         {/* Reply Modal */}
         {open && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
               <div className="bg-white p-6 rounded shadow-lg w-[350px]">
-
-                <h2 className="text-lg mb-2 font-semibold">
-                  Reply to {sender}
-                </h2>
+                <h2 className="text-lg mb-2 font-semibold">Reply to {sender}</h2>
 
                 {messageBody && (
                     <p className="text-sm text-gray-600 mb-3">
@@ -96,7 +96,6 @@ function Message(props) {
                   >
                     Cancel
                   </button>
-
                   <button
                       onClick={handleSend}
                       className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
@@ -104,7 +103,6 @@ function Message(props) {
                     Send
                   </button>
                 </div>
-
               </div>
             </div>
         )}
