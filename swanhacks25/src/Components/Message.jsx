@@ -40,15 +40,15 @@ function Message(props) {
   return (
     <>
       <div className="flex text-xs text-[#d3d2d6] font-thin mt-[30px] mb-[10px] justify-evenly items-center gap-[5px]">
-        <div className="w-[100%] shrink-[1.1]"><p>{props.type}</p></div>
-        <div className="w-[100%]"><p>{props.location}</p></div>
-        <div className="w-[100%]"><p>{props.sender}</p></div>
+        <div className="w-[100%] shrink-[1.1]"><p>{props.type ? props.type : "-"}</p></div>
+        <div className="w-[100%]"><p>{props.location ? props.location : "-"}</p></div>
+        <div className="w-[100%]"><p>{props.sender ? props.sender : '-'}</p></div>
         <div className={`w-[100%] 
         ${props.status === "Pending" ? "text-yellow-500 font-bold" 
         : props.status === "Completed" ? "text-green-500 font-bold" 
         : "text-gray-500"}`}>
-        <p>{props.status}</p></div>
-        <div className="w-[100%]"><p>{props.time}</p></div>
+        <p>{props.status ? props.status : '-'}</p></div>
+        <div className="w-[100%]"><p>{props.time ? props.time : '-'}</p></div>
 
         <div className='w-[100%] shrink-[1.2]'>
           {props.status != "Completed" && <button className='w-[20px]' onClick={() => props.onComplete()}><img src={check}></img></button>}
@@ -72,12 +72,12 @@ function Message(props) {
               <div className="bg-white p-6 rounded shadow-lg w-[350px]">
 
                 <h2 className="text-lg mb-2 font-semibold">
-                  Reply to {sender}
+                  Reply to {props.sender}
                 </h2>
 
-                {messageBody && (
+                {toastMessage && (
                     <p className="text-sm text-gray-600 mb-3">
-                      <strong>Original:</strong> {messageBody}
+                      <strong>Original:</strong> {toastMessage}
                     </p>
                 )}
 

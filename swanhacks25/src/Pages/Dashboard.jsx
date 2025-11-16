@@ -104,7 +104,7 @@ const Dashboard = () => {
 
         {messageList.map((item, index) => {
             return(<Message 
-                key={item.key}
+                key={item.id}
                 type={item.type}
                 time={item.time}
                 location={item.location}
