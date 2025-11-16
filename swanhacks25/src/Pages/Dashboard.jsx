@@ -13,6 +13,7 @@ const Dashboard = () => {
         {key: 0, type:'Need', time:'9/12/25', location:'123 Main St. Iowa City, IA', sender:'712-676-4201', status:'Pending'},
         {key: 1, type:'Fire', time:'9/16/27', location:'999 hello St. Iowa City, IA', sender:'712-444-1234', status:'Completed'}])
     const [sortBy, setSortBy] = useState("")
+    const [loading, setLoading] = useState(true)
 
     // Function to compare two emergency objects based on the 'key' (sortBy)
     const sortMessages = (a, b) => {
