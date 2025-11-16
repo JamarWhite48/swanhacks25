@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 import "../index.css"
 
 // Firebase Imports
-import { database } from '../firebaseConfig' 
+import { database } from '../firebase' 
 import { ref, onValue } from "firebase/database"
 
 const Dashboard = () => {
@@ -44,6 +44,8 @@ const Dashboard = () => {
             
             // Show the newest messages (highest timestamp) at the top of the list
             setMessageList(loadedMessages.reverse());
+            console.log("Loaded Messages: ", loadedMessages)
+            console.log("message list: ", messageList)
             setLoading(false);
         }, (error) => {
             console.error("Firebase read error:", error.message);
@@ -62,7 +64,7 @@ const Dashboard = () => {
 
         <div className='flex justify-center'>
 
-      <div className='w-[85vw] min-h-[90vh] p-[50px] text-left mt-[60px]'>
+      <div className='w-[85vw] min-h-[90vh] p-[2%] text-left mt-[60px]'>
         <h1 className='text-2xl mb-[20px] text-white font-bold'>Emergency Dashboard ({messageList.length})</h1>
         <select name='sort'>
           <option value="">Sort By</option>
@@ -93,12 +95,6 @@ const Dashboard = () => {
             />)
         })}
       </div>
-
-        
-
-      </div>
-
-      <div className="w-full h-[60vh] rounded-lg overflow-hidden shadow-xl">
       
     </div>
     </>
