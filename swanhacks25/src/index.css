@@ -91,3 +91,15 @@ body {
   font-size: 0.7rem;
   padding: 2px 6px;
 }
+
+hr{
+  border: none;
+  height: 1px;
+  background-color: #EEEEEE;
+}
+
+.topLine{
+  border: none;
+  height: 3px;
+  background-color: #CCCCCC;
+}
