@@ -2,10 +2,12 @@ import Message from '../Components/Message.jsx'
 import Navbar from '../Components/Navbar.jsx'
 import {useState} from 'react'
 import "../index.css"
+import {database} from "../../firebase.json"
+import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 
 const Dashboard = () => {
   
-  const [messageList, setMessageList] = useState([{type:'Need', time:'9/12/25', location:'123 Main St. Iowa City, IA', sender:'712-676-4201', status:'Pending'}])
+  const [messageList, setMessageList] = useState([{key: 0, type:'Need', time:'9/12/25', location:'123 Main St. Iowa City, IA', sender:'712-676-4201', status:'Pending'}])
 
   return (
     <>
@@ -44,7 +46,14 @@ const Dashboard = () => {
             />)
         })}
       </div>
+
+        
+
       </div>
+
+      <div className="w-full h-[60vh] rounded-lg overflow-hidden shadow-xl">
+      
+    </div>
     </>
   )
 }
