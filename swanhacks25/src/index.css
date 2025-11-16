@@ -88,3 +88,12 @@ hr{
   background-color: #383838;
 }
 
+select{
+  appearance: none;
+  color: rgb(207, 207, 207);
+  border: 1px solid rgb(176, 176, 176);
+  font-size: 0.75rem;
+  padding: 5px;
+  text-align: center;
+  border-radius: 3px;
+}
