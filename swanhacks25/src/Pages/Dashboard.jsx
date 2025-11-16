@@ -11,9 +11,10 @@ const Dashboard = () => {
     <>
       <Navbar/>
 
-      <div className='w-[85vw] min-h-[90vh] bg-white p-[50px] text-left mt-[40px]'>
-        <h1 className='text-xl mb-[20px]'>Emergency Dashboard (#)</h1>
-        <select className="border border-gray-300 p-[3px]" name='sort'>
+        <div className='flex justify-center'>
+      <div className='w-[85vw] min-h-[90vh] p-[50px] text-left mt-[60px]'>
+        <h1 className='text-2xl mb-[20px] text-white font-bold'>Emergency Dashboard (#)</h1>
+        <select className="border border-gray-300 p-[3px] text-white" name='sort'>
           <option value="">Sort By</option>
           <option value="type">Type</option>
           <option value="location">Location</option>
@@ -22,7 +23,7 @@ const Dashboard = () => {
           <option value="time">Date</option>
         </select>
 
-        <div className="flex text-xs text-left mt-[50px] mb-[10px] justify-evenly text-[0.9rem] gap-[5px]">
+        <div className="flex text-xs text-white text-left mt-[50px] mb-[10px] justify-evenly text-[0.9rem] gap-[5px]">
           <div className='w-[100%] shrink-[1.1]'><p>Type</p></div>
           <div className='w-[100%]'><p>Location</p></div>
           <div className='w-[100%]'><p>Sender</p></div>
@@ -30,7 +31,7 @@ const Dashboard = () => {
           <div className='w-[100%]'><p>Time</p></div>
           <div className='w-[100%] shrink-[1.1]'><p></p></div>
         </div>
-        <hr className='topLine'/>
+        <hr/>
 
         <Message 
         type='Need' 
@@ -42,10 +43,11 @@ const Dashboard = () => {
         <Message 
         type='Need' 
         time='9/12/25' 
-        location='67 Diddyblud way Cincinatti, OH' 
+        location='67 Diddyblud way Cincinatti, OH'
         sender='712-676-4201' 
         status='Completed'></Message>
 
+      </div>
       </div>
     </>
   )

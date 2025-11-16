@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(20, 20, 20, 1);
-  background-color: #EEEEEE;
+  background-color: #121A2B;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,22 +15,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
 .navbar {
   width: 100%;
   height: 55px;
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: #0b101b;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 30px;
   position: fixed;
   top: 0;
@@ -41,9 +31,9 @@ body {
 /* Left */
 .navbar-left .logo {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 900;
   text-decoration: none;
-  color: #111827;
+  color: #E03F3B;
 }
 
 /* Center */
@@ -58,12 +48,12 @@ body {
 .navbar-center .nav-links a {
   text-decoration: none;
   font-size: 1.1rem;
-  color: #374151;
+  color: #B7B5BB;
   transition: color 0.2s ease;
 }
 
 .navbar-center .nav-links a:hover {
-  color: #2563eb;
+  color: #B7B5BB;
 }
 
 /* Right */
@@ -94,13 +84,7 @@ body {
 
 hr{
   border: none;
-  height: 1px;
-  background-color: #EEEEEE;
-}
-
-.topLine{
-  border: none;
-  height: 3px;
-  background-color: #CCCCCC;
+  height: 0.1px;
+  background-color: #383838;
 }
 

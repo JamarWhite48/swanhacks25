@@ -35,7 +35,7 @@ function Message(props) {
 
   return (
     <>
-      <div className="flex text-xs mt-[30px] mb-[10px] justify-evenly items-center gap-[5px]">
+      <div className="flex text-xs text-[#d3d2d6] font-thin mt-[30px] mb-[10px] justify-evenly items-center gap-[5px]">
         <div className="w-[100%] shrink-[1.1]"><p>{props.type}</p></div>
         <div className="w-[100%]"><p>{props.location}</p></div>
         <div className="w-[100%]"><p>{props.sender}</p></div>

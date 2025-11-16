@@ -4,7 +4,7 @@ function Navbar(){
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <a href="/" className="logo">App</a>
+        <a href="/" className="logo">Hero</a>
       </div>
 
       <div className="navbar-center">
