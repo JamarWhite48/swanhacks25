@@ -42,6 +42,7 @@ const Dashboard = () => {
     };
 
       useEffect(() => {
+
         // Reference to the 'alerts' node where your backend stores messages
         const alertsRef = ref(database, 'alerts');
         
